@@ -3,15 +3,11 @@ defmodule OAuth2TokenManager.MixProject do
 
   def project do
     [
-      aliases: aliases(),
       app: :oauth2_token_manager,
       version: "0.1.0",
-      build_path: "../../_build",
-      config_path: "../../config/config.exs",
-      deps_path: "../../deps",
-      lockfile: "../../mix.lock",
       elixir: "~> 1.15",
-      start_permanent: Mix.env() == :prod,
+      description: description(),
+      package: package(),
       deps: deps()
     ]
   end
@@ -26,16 +22,24 @@ defmodule OAuth2TokenManager.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:oauth2, "== 2.1.0"},
-      {:typed_struct, "== 0.3.0"},
-      {:jason, "== 1.4.1"},
-      {:mock, "== 0.3.8", only: :test}
+      {:oauth2, "~> 2.1.0"},
+      {:typed_struct, "~> 0.3.0"},
+      {:jason, "~> 1.4.1"},
+      {:mock, "~> 0.3.8", only: :test},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 
-  defp aliases do
+  defp description do
+    """
+    This package works with the `oauth2` package to manage the automatic renewal of tokens before they expire.
+    """
+  end
+
+  defp package do
     [
-      setup: []
+      licenses: [],
+      links: %{"GitHub" => "https://github.com/Brale-xyz/oauth2-token-manager"}
     ]
   end
 end
