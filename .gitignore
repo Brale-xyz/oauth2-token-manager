@@ -24,3 +24,6 @@ oauth2_token_manager-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Elixir VSCode extension data
+/.elixir_ls/
