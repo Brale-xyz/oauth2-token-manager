@@ -38,7 +38,7 @@ defmodule OAuth2TokenManager.MixProject do
 
   defp package do
     [
-      licenses: [],
+      licenses: ["Apache-2.0"],
       links: %{"GitHub" => "https://github.com/Brale-xyz/oauth2-token-manager"}
     ]
   end
