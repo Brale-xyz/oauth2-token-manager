@@ -1,4 +1,4 @@
-defmodule OAuth2TokenManager.TokenRefreshStrategy do
+defmodule OAuth2TokenAgent.TokenRefreshStrategy do
   @moduledoc """
   Module defining a struct for representing strategies for refreshing tokens and
   the functions for applying them

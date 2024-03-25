@@ -1,15 +1,15 @@
-defmodule OAuth2TokenManager.MixProject do
+defmodule OAuth2TokenAgent.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :oauth2_token_manager,
+      app: :oauth2_token_agent,
       version: "0.1.0",
       elixir: "~> 1.15",
       description: description(),
       package: package(),
       deps: deps(),
-      source_url: "https://github.com/Brale-xyz/oauth2-token-manager"
+      source_url: "https://github.com/Brale-xyz/oauth2-token-agent"
     ]
   end
 
@@ -40,7 +40,7 @@ defmodule OAuth2TokenManager.MixProject do
   defp package do
     [
       licenses: ["Apache-2.0"],
-      links: %{"GitHub" => "https://github.com/Brale-xyz/oauth2-token-manager"}
+      links: %{"GitHub" => "https://github.com/Brale-xyz/oauth2-token-agent"}
     ]
   end
 end
