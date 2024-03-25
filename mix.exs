@@ -8,7 +8,8 @@ defmodule OAuth2TokenManager.MixProject do
       elixir: "~> 1.15",
       description: description(),
       package: package(),
-      deps: deps()
+      deps: deps(),
+      source_url: "https://github.com/Brale-xyz/oauth2-token-manager"
     ]
   end
 
