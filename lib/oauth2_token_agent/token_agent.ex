@@ -1,4 +1,4 @@
-defmodule OAuth2TokenManager.TokenAgent do
+defmodule OAuth2TokenAgent.TokenAgent do
   @moduledoc """
   Defines the Agent used to manage the token and the struct it uses to store its state
   """
@@ -7,7 +7,7 @@ defmodule OAuth2TokenManager.TokenAgent do
   use TypedStruct
 
   alias __MODULE__
-  alias OAuth2TokenManager.TokenRefreshStrategy
+  alias OAuth2TokenAgent.TokenRefreshStrategy
   alias OAuth2.{AccessToken, Client, Error, Response}
 
   require Logger

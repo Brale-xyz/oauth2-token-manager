@@ -1,11 +1,11 @@
-defmodule OAuth2TokenManager.TokenRefreshStrategyTest do
+defmodule OAuth2TokenAgent.TokenRefreshStrategyTest do
   @moduledoc """
   Tests the refresh strategies configured with TokenRefreshStrategy
   """
 
   use ExUnit.Case
 
-  alias OAuth2TokenManager.TokenRefreshStrategy
+  alias OAuth2TokenAgent.TokenRefreshStrategy
 
   defp seconds_from_now(seconds) do
     DateTime.utc_now() |> DateTime.add(seconds, :second, Calendar.UTCOnlyTimeZoneDatabase)

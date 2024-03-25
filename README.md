@@ -1,4 +1,4 @@
-# OAuth2TokenManager
+# OAuth2TokenAgent
 
 This package works with the `oauth2` package to manage the automatic renewal of
 tokens before they expire
@@ -6,25 +6,25 @@ tokens before they expire
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `oauth2_token_manager` to your list of dependencies in `mix.exs`:
+by adding `oauth2_token_agent` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:oauth2_token_manager, "~> 0.1.0"}
+    {:oauth2_token_agent, "~> 0.1.0"}
   ]
 end
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/oauth2_token_manager>.
+be found at <https://hexdocs.pm/oauth2_token_agent>.
 
 ## Usage
 
 Create an `OAuth2.Client` instance to use to get the initial token and pass it to
-`OAuth2TokenMananger.TokenAgent.start_link/1` along with the inline
-`OAuth2TokenManager.TokenRefreshStrategy` and the name for the `Agent`.
+`OAuth2TokenAgent.TokenAgent.start_link/1` along with the inline
+`OAuth2TokenAgent.TokenRefreshStrategy` and the name for the `Agent`.
 
 The client can be configured as described at
 https://github.com/ueberauth/oauth2#configure-a-http-client.
@@ -37,34 +37,34 @@ client = Client.new([
       site: "https://example.com/"
     ])
 
-{:ok, agent} = OAuth2TokenManager.TokenAgent.start_link(
+{:ok, agent} = OAuth2TokenAgent.TokenAgent.start_link(
   name: MyModule.TokenAgent,
   initial_client: client,
-  inline_refresh_strategy: %OAuth2TokenManager.TokenRefreshStrategy{seconds_before_expires: 30}
+  inline_refresh_strategy: %OAuth2TokenAgent.TokenRefreshStrategy{seconds_before_expires: 30}
 )
 ```
 
 The current version of the client can be retrieved using
-`OAuth2TokenManager.TokenAgent.get_client/1` with the agent's PID or name.  
+`OAuth2TokenAgent.TokenAgent.get_client/1` with the agent's PID or name.  
 This client will automatically use the access token as a Bearer token in
 the Authorization header when calling its request methods. The access token
 itself can be retrieved from the client struct if it is desirable to use separately
-configured clients and `OAuth2TokenManager.TokenAgent.get_access_token/1` is
+configured clients and `OAuth2TokenAgent.TokenAgent.get_access_token/1` is
 provided for convenience when doing so.
 
 ```Elixir
-current_client = OAuth2TokenManager.TokenAgent.get_client(agent)
-current_client = OAuth2TokenManager.TokenAgent.get_client(MyModule.TokenAgent)
-access_token = OAuth2TokenManager.TokenAgent.get_access_token(MyModule.TokenAgent)
+current_client = OAuth2TokenAgent.TokenAgent.get_client(agent)
+current_client = OAuth2TokenAgent.TokenAgent.get_client(MyModule.TokenAgent)
+access_token = OAuth2TokenAgent.TokenAgent.get_access_token(MyModule.TokenAgent)
 ```
 
-The token can be refreshed by calling `OAuth2TokenManager.TokenAgent.refresh_tokens/1`.
+The token can be refreshed by calling `OAuth2TokenAgent.TokenAgent.refresh_tokens/1`.
 If a refresh token is available, it will be exchanged for a new set of tokens.
 If no refresh token is available or the attempt to use the refresh results in an error,
 the original client will be used again to attempt to obtain a new set of tokens.
 
 ```Elixir
-:ok = OAuth2TokenManager.TokenAgent.refresh(MyModule.TokenAgent)
+:ok = OAuth2TokenAgent.TokenAgent.refresh(MyModule.TokenAgent)
 ```
 
 This can be used to handle complex token refresh logic, but it will generally be
@@ -91,7 +91,7 @@ The inline refreshes only occur as part of request for data from the agent; this
 saves unnecessary renewal requests in low-volume systems but tokens may be allowed
 to expire if unused. If refresh tokens need to be kept active in a system where the
 time between requests exceeds the token duration and the initial client cannot be
-reused, using `OAuth2TokenManager.TokenAgent.refresh` may be necessary.
+reused, using `OAuth2TokenAgent.TokenAgent.refresh` may be necessary.
 
 The inline refreshes occur during message processing in the agent, which is not
 concurrent per agent. This guarantees that redundant refresh calls will not be

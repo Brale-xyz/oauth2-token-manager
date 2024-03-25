@@ -1,4 +1,4 @@
-defmodule OAuth2TokenManager.TokenAgentTest do
+defmodule OAuth2TokenAgent.TokenAgentTest do
   @moduledoc """
   Tests for TokenAgent, which is used to track token state
   """
@@ -7,7 +7,7 @@ defmodule OAuth2TokenManager.TokenAgentTest do
   import Mock
 
   alias OAuth2.{AccessToken, Client}
-  alias OAuth2TokenManager.{TokenAgent, TokenRefreshStrategy}
+  alias OAuth2TokenAgent.{TokenAgent, TokenRefreshStrategy}
 
   defp test_client do
     Client.new(
